@@ -1,0 +1,28 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target = <&spi0>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            
+            
+            spidev@0 {
+                reg = <0>;
+                status = "disabled";
+            };
+
+            
+            fpga_fir@0 {
+                compatible = "custom,fpga-fir"; 
+                reg = <0>;                      
+                spi-max-frequency = <1000000>;  
+            };
+        };
+    };
+};
